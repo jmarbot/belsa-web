@@ -294,3 +294,66 @@ ol.steps{margin:0;padding:0}
 .ylist b{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink);line-height:1.1}
 .ylist span{font-size:12px;color:var(--muted)}
 @media (max-width:760px){.ylist{grid-template-columns:1fr}}
+
+/* ───── Encuadre de fotografías: punto focal por imagen (vale para todas las páginas) ───── */
+img[src*="assets/images/"]{object-fit:cover}
+img[src*="faciales/acido-hialuronico-labios-"]{object-position:30% 68%}
+img[src*="metodo/acompanar-"]{object-position:55% 52%}
+img[src*="portada/belsa-tratamiento-facial-"]{object-position:50% 38%}
+img[src*="experiencia/cabina-corporal-"]{object-position:50% 60%}
+img[src*="experiencia/cabina-facial-"]{object-position:55% 60%}
+img[src*="tecnologias/cynosure-laser-"]{object-position:55% 55%}
+img[src*="corporales/depilacion-laser-"]{object-position:45% 62%}
+img[src*="equipo/dra-asadi-"]{object-position:55% 52%}
+img[src*="equipo/dra-garrote-"]{object-position:50% 18%}
+img[src*="especialidades/estetica-facial-"]{object-position:55% 58%}
+img[src*="tecnologias/fhos-bioluminiscent-"]{object-position:50% 45%}
+img[src*="journal/fototerapia-led-"]{object-position:50% 52%}
+img[src*="faciales/higiene-facial-"]{object-position:45% 55%}
+img[src*="tecnologias/indiba-"]{object-position:50% 48%}
+img[src*="journal/indiba-radiofrecuencia-"]{object-position:50% 50%}
+img[src*="journal/labios-resultado-natural-"]{object-position:50% 45%}
+img[src*="tecnologias/lpg-cellu-m6-"]{object-position:50% 42%}
+img[src*="journal/lpg-endermologie-"]{object-position:50% 58%}
+img[src*="corporales/lpg-remodelacion-corporal-"]{object-position:55% 62%}
+img[src*="journal/luminosidad-"]{object-position:60% 55%}
+img[src*="equipo/maria-antonia-"]{object-position:50% 28%}
+img[src*="especialidades/medicina-estetica-"]{object-position:60% 40%}
+img[src*="metodo/personalizar-"]{object-position:40% 55%}
+img[src*="journal/presoterapia-"]{object-position:50% 45%}
+img[src*="experiencia/recepcion-belsa-"]{object-position:50% 62%}
+img[src*="tecnologias/reverso-"]{object-position:50% 50%}
+img[src*="journal/termoterapia-manta-"]{object-position:50% 55%}
+img[src*="corporales/tratamiento-corporal-laser-"]{object-position:55% 52%}
+img[src*="corporales/tratamiento-corporal-tecnologia-"]{object-position:45% 48%}
+img[src*="faciales/tratamiento-facial-aparatologia-"]{object-position:45% 52%}
+img[src*="faciales/tratamiento-facial-medico-"]{object-position:50% 42%}
+img[src*="metodo/valorar-"]{object-position:50% 68%}
+/* fotos con borde negro en el original: se amplían un poco para ocultarlo */
+img[src*="tecnologias/cynosure-laser-"],img[src*="journal/presoterapia-"],img[src*="journal/lpg-endermologie-"],img[src*="journal/termoterapia-manta-"],img[src*="tecnologias/lpg-cellu-m6-"]{scale:1.04}
+
+/* ───── V3.1 · scroll: revelado de fotos, parallax y titulares ───── */
+.js .imr{clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out)}
+.js .imr:not(.in){clip-path:inset(100% 0 0 0)}
+.js .imr img{transition:scale 1.6s var(--ease-out)}
+.js .imr:not(.in) img{scale:1.18}
+img.par{will-change:translate;translate:0 var(--py,0px)}
+.tcard .vis img.par,.page-ph img.par,.tech-ph img.par{position:absolute;left:0;top:-7%;height:114%!important;width:100%}
+.page-ph,.tech-ph{position:relative}
+.tcard .vis img{transition:scale 1.1s var(--ease-out)}
+.tcard:hover .vis img{transform:none;scale:1.06}
+.h-sec .w,.prose h2 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.h-sec .w>span{display:inline-block;transition:transform 1s var(--ease-out);transition-delay:calc(var(--i) * 55ms)}
+.js .h-sec.wsplit:not(.in) .w>span{transform:translateY(105%)}
+.page-ph{animation:none}
+.hero-sub .wrap>div:first-child,.page-ph{will-change:transform}
+.titem{transition:background .4s var(--ease)}
+@media (prefers-reduced-motion: reduce){
+  .js .imr:not(.in){clip-path:none}.js .imr:not(.in) img{scale:1}
+  img.par{translate:none}.js .h-sec.wsplit:not(.in) .w>span{transform:none}
+}
+
+.lpg-rev{margin:0 auto;max-width:900px;text-align:center;display:grid;gap:22px}
+.lpg-rev blockquote{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.2vw,44px);line-height:1.18;color:var(--ink)}
+.lpg-rev em{font-style:italic;color:var(--champ-ink)}
+.lpg-rev figcaption{font-size:13px;color:var(--muted);letter-spacing:.04em}

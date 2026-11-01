@@ -20,6 +20,7 @@
       "telephone": "+34 660 43 32 34",
       "email": "info@belsaestetic.com",
       "hasMap": "https://www.google.com/maps/search/?api=1&query=BELSA%20Centre%20M%C3%A8dic%20Est%C3%A8tic%2C%20C%2FSant%20Jordi%2030-32%2C%2008172%20Sant%20Cugat%20del%20Vall%C3%A8s",
+      "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "19:00"}],
       "contactPoint": {"@type": "ContactPoint", "telephone": "+34 660 43 32 34", "contactType": "reservations", "availableLanguage": ["es", "ca"]},
       "address": {
         "@type": "PostalAddress",
@@ -37,7 +38,6 @@
         {"@type": "MedicalProcedure", "name": "Tratamiento de arrugas de expresión"},
         {"@type": "MedicalProcedure", "name": "Plasma rico en plaquetas y exosomas"},
         {"@type": "MedicalProcedure", "name": "Radiofrecuencia fraccionada con microagujas"},
-        {"@type": "MedicalProcedure", "name": "Láser CO2 fraccionado"},
         {"@type": "MedicalProcedure", "name": "Láser para manchas y lesiones vasculares"},
         {"@type": "MedicalProcedure", "name": "Blefaroplastia"},
         {"@type": "MedicalProcedure", "name": "Depilación láser"},
@@ -512,10 +512,205 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
   .ribbon-track{animation:none!important;flex-wrap:wrap;width:auto}
   .ribbon-track>div[aria-hidden]{display:none}
 }
+/* ───── Encuadre de fotografías: punto focal por imagen (vale para todas las páginas) ───── */
+img[src*="assets/images/"]{object-fit:cover}
+img[src*="faciales/acido-hialuronico-labios-"]{object-position:30% 68%}
+img[src*="metodo/acompanar-"]{object-position:55% 52%}
+img[src*="portada/belsa-tratamiento-facial-"]{object-position:50% 38%}
+img[src*="experiencia/cabina-corporal-"]{object-position:50% 60%}
+img[src*="experiencia/cabina-facial-"]{object-position:55% 60%}
+img[src*="tecnologias/cynosure-laser-"]{object-position:55% 55%}
+img[src*="corporales/depilacion-laser-"]{object-position:45% 62%}
+img[src*="equipo/dra-asadi-"]{object-position:55% 52%}
+img[src*="equipo/dra-garrote-"]{object-position:50% 18%}
+img[src*="especialidades/estetica-facial-"]{object-position:55% 58%}
+img[src*="tecnologias/fhos-bioluminiscent-"]{object-position:50% 45%}
+img[src*="journal/fototerapia-led-"]{object-position:50% 52%}
+img[src*="faciales/higiene-facial-"]{object-position:45% 55%}
+img[src*="tecnologias/indiba-"]{object-position:50% 48%}
+img[src*="journal/indiba-radiofrecuencia-"]{object-position:50% 50%}
+img[src*="journal/labios-resultado-natural-"]{object-position:50% 45%}
+img[src*="tecnologias/lpg-cellu-m6-"]{object-position:50% 42%}
+img[src*="journal/lpg-endermologie-"]{object-position:50% 58%}
+img[src*="corporales/lpg-remodelacion-corporal-"]{object-position:55% 62%}
+img[src*="journal/luminosidad-"]{object-position:60% 55%}
+img[src*="equipo/maria-antonia-"]{object-position:50% 28%}
+img[src*="especialidades/medicina-estetica-"]{object-position:60% 40%}
+img[src*="metodo/personalizar-"]{object-position:40% 55%}
+img[src*="journal/presoterapia-"]{object-position:50% 45%}
+img[src*="experiencia/recepcion-belsa-"]{object-position:50% 62%}
+img[src*="tecnologias/reverso-"]{object-position:50% 50%}
+img[src*="journal/termoterapia-manta-"]{object-position:50% 55%}
+img[src*="corporales/tratamiento-corporal-laser-"]{object-position:55% 52%}
+img[src*="corporales/tratamiento-corporal-tecnologia-"]{object-position:45% 48%}
+img[src*="faciales/tratamiento-facial-aparatologia-"]{object-position:45% 52%}
+img[src*="faciales/tratamiento-facial-medico-"]{object-position:50% 42%}
+img[src*="metodo/valorar-"]{object-position:50% 68%}
+/* fotos con borde negro en el original: se amplían un poco para ocultarlo */
+img[src*="tecnologias/cynosure-laser-"],img[src*="journal/presoterapia-"],img[src*="journal/lpg-endermologie-"],img[src*="journal/termoterapia-manta-"],img[src*="tecnologias/lpg-cellu-m6-"]{scale:1.04}
+
+/* ═════════ V3.1 · encuadres, scroll y conversión ═════════ */
+/* Revelado de imagen: cortina que sube + leve zoom de salida */
+.js .imr{clip-path:inset(0 0 0 0);transition:clip-path 1.25s var(--ease-out)}
+.js .imr:not(.in){clip-path:inset(100% 0 0 0)}
+.js .imr img{transition:scale 1.6s var(--ease-out),opacity .6s var(--ease)}
+.js .imr:not(.in) img{scale:1.18}
+/* Parallax: la imagen se desplaza dentro del marco (propiedad translate, independiente del zoom) */
+img.par{will-change:translate;translate:0 var(--py,0px)}
+.vis img.par,.pv img.par,.por img.par,.sp img.par,.ba-ph img.par,.closer-ph img.par{inset:-7% 0!important;height:114%!important;top:-7%}
+/* Zoom al pasar el ratón con la propiedad scale (no pisa el parallax) */
+.spec .vis img,.post .pv img,.pro .por img{transition:scale 1.1s var(--ease-out)}
+.spec:hover .vis img,.post:hover .pv img{transform:none;scale:1.06}
+
+
+/* Titulares que entran palabra a palabra */
+.h-sec .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.h-sec .w>span{display:inline-block;transition:transform 1s var(--ease-out);transition-delay:calc(var(--i) * 55ms)}
+.js .h-sec.wsplit:not(.in) .w>span{transform:translateY(105%)}
+
+/* Portada */
+.hero-vis{position:relative}
+.arch{will-change:transform}
+.trust{list-style:none;margin:44px 0 0;padding:22px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;animation:fadeUp .8s .55s var(--ease-out) backwards}
+.trust li{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--muted);line-height:1.45;padding-left:14px;border-left:1px solid var(--champ)}
+.trust b{font-family:var(--serif);font-weight:500;font-size:19px;color:var(--ink);letter-spacing:0}
+.seal{position:absolute;left:-46px;bottom:56px;z-index:3;display:grid;gap:2px;padding:18px 22px 18px 24px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:4px;text-decoration:none;box-shadow:0 30px 60px -30px rgba(48,40,30,.45);animation:fadeUp .9s .9s var(--ease-out) backwards;transition:transform .4s var(--ease-out)}
+.seal:hover{transform:translateY(-3px)}
+.seal-k{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--champ-ink)}
+.seal-v{font-family:var(--serif);font-size:24px;color:var(--ink);line-height:1.1}
+.seal-v em{font-style:italic;color:var(--champ-ink)}
+.seal-a{position:absolute;right:16px;top:16px;color:var(--champ-ink);transition:transform .3s}
+.seal:hover .seal-a{transform:translateX(4px)}
+.seal-ring{position:absolute;right:-38px;top:-34px;width:128px;height:128px;z-index:3;animation:spin 26s linear infinite;pointer-events:none}
+.seal-ring text{font:600 9.6px var(--sans);letter-spacing:.24em;fill:var(--champ-ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:1100px){.seal{left:-16px}.seal-ring{right:-10px}}
+@media (max-width:860px){.trust{grid-template-columns:1fr;gap:12px}.seal{left:12px;bottom:20px;padding:14px 18px}.seal-v{font-size:20px}.seal-ring{width:96px;height:96px;right:6px;top:-22px}.hero-vis{max-width:420px;width:100%;justify-self:center}}
+.ribbon-track{will-change:transform}
+
+/* Medicina estética: foto fija que acompaña la lista */
+.med-ph{position:relative;margin:34px 0 0;aspect-ratio:4/4.6;max-height:62vh;border-radius:999px 999px 4px 4px;overflow:hidden;background:var(--cream)}
+.med-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s var(--ease),scale 1.6s var(--ease-out)!important}
+.med-ph img.on{opacity:1}
+.med-ph figcaption{position:absolute;left:18px;bottom:18px}
+.med-ph figcaption span{display:inline-block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;background:rgba(247,241,232,.92);color:var(--ink);padding:7px 12px;border-radius:999px}
+.med-item.cur h3{color:var(--champ-ink)}
+.med-item.cur::after{transform:scaleX(1)}
+@media (max-width:900px){.med-ph{display:none}}
+
+/* Explora: fotos reales */
+.need .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:scale 1.2s var(--ease-out)}
+.need.active .bg{transform:none}.need.active .bg img{scale:1.05}
+.need .bg::after{background:linear-gradient(180deg,rgba(22,22,22,.05) 25%,rgba(22,22,22,.72) 100%);z-index:1}
+.need-btn{color:transparent;font-size:0}
+.need .num{color:rgba(255,255,255,.85);z-index:2}
+.need:not(.active) h3{writing-mode:vertical-rl;transform:rotate(180deg);font-size:clamp(26px,2.2vw,34px)}
+@media (max-width:860px){.need:not(.active) h3{writing-mode:horizontal-tb;transform:none}}
+
+/* Experiencia: collage editorial */
+.space{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);grid-template-rows:auto auto auto;gap:18px;align-items:start}
+.sp{position:relative;margin:0;overflow:hidden;border-radius:4px;background:var(--cream)}
+.sp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sp-a{grid-row:1/3;align-self:stretch;border-radius:999px 999px 4px 4px}
+.sp-b{aspect-ratio:16/10}
+.sp-c{aspect-ratio:16/10}
+.sp figcaption{position:absolute;left:16px;bottom:16px;padding:12px 16px;display:flex;flex-direction:column;gap:1px;color:var(--ink);background:rgba(247,241,232,.93);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:4px;max-width:calc(100% - 32px)}
+.sp-a figcaption{bottom:auto;top:auto;bottom:16px;left:50%;translate:-50% 0;text-align:center;white-space:nowrap}
+.sp figcaption b{font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.1}
+.sp figcaption span{font-size:12.5px;color:var(--muted)}
+.sp-quote{grid-column:1/-1;margin-top:clamp(28px,4vw,56px);font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.4vw,48px);line-height:1.12;color:var(--ink);max-width:24ch}
+.sp-quote em{font-style:italic;color:var(--champ-ink)}
+@media (max-width:860px){.space{grid-template-columns:1fr}.sp-a{grid-row:auto;aspect-ratio:4/4.6}}
+
+/* Especialidades: más foto */
+.spec .vis{aspect-ratio:5/4}
+
+/* Antes y después con foto */
+.ba-ph{position:relative;min-height:440px;border-radius:4px;overflow:hidden;background:#2a2622}
+.ba-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+.ba-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:clamp(24px,4vw,44px);background:linear-gradient(180deg,rgba(22,22,22,.05) 30%,rgba(22,22,22,.82) 100%)}
+.ba-ov p{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,40px);line-height:1.12;color:var(--ivory);max-width:24ch}
+.ba-ov em{font-style:italic;color:var(--champ)}
+.ba-grid{align-items:end}
+
+/* Equipo: retratos con encuadre de cara */
+.pro .por{aspect-ratio:4/5}
+.pro .por::before,.pro .por::after{display:none}
+.pro .por img{scale:var(--z,1);transform-origin:var(--o,50% 40%)}
+.pro:hover .por img{scale:calc(var(--z,1) * 1.04)}
+img[src*="equipo/dra-asadi-"]{--z:1.32;--o:66% 40%}
+img[src*="equipo/dra-garrote-"]{object-position:50% 4%}
+.form h3{line-height:1.08}
+
+/* Journal: alturas iguales */
+.posts{align-items:start}
+.post .pv,.post:first-child .pv{aspect-ratio:auto;height:clamp(300px,30vw,440px)}
+
+/* Por qué BELSA */
+.why{background:var(--cream)}
+.why-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.why-list li{padding:34px 26px 38px 0;border-right:1px solid var(--line);margin-right:26px}
+.why-list li:last-child{border-right:0;margin-right:0}
+.why-n{display:block;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--champ-ink);margin-bottom:28px}
+.why-list h3{font-size:clamp(28px,2.4vw,36px);font-weight:300;line-height:1.05}
+.why-list h3 em{font-style:italic;color:var(--champ-ink)}
+.why-list p{margin-top:14px;font-size:14px;color:var(--muted);max-width:30ch}
+@media (max-width:960px){.why-list{grid-template-columns:1fr 1fr}.why-list li:nth-child(2){border-right:0;margin-right:0}.why-list li{border-bottom:1px solid var(--line)}}
+@media (max-width:560px){.why-list{grid-template-columns:1fr}.why-list li{border-right:0;margin-right:0}}
+.brands{margin-top:clamp(48px,6vw,80px);overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.brands-track{display:flex;width:max-content;animation:ribbon 38s linear infinite}
+.brands-track>div{display:flex}
+.brands span{padding:0 clamp(28px,4vw,56px);font-family:var(--serif);font-size:clamp(24px,2.4vw,34px);color:rgba(48,48,46,.55);white-space:nowrap;letter-spacing:.02em}
+
+/* Llamada final con foto */
+.closer{position:relative;overflow:hidden;color:var(--ivory);background:var(--ink)}
+.closer-in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(32px,6vw,96px);align-items:center;padding-block:clamp(72px,10vw,140px)}
+.closer-ph{position:relative;margin:0;aspect-ratio:4/5;border-radius:999px 999px 4px 4px;overflow:hidden;background:#2a2622}
+.closer-ph img{position:absolute;left:0;width:100%;object-fit:cover}
+.closer-t{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5.6vw,84px);line-height:1;color:var(--ivory);letter-spacing:-.02em}
+.closer-t em{font-style:italic;color:var(--champ)}
+.closer-sub{margin-top:24px;font-size:16px;line-height:1.7;color:rgba(238,226,211,.8);max-width:44ch}
+.closer-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.closer .btn-ghost{color:var(--ivory);border-color:rgba(247,241,232,.5)}
+.closer .btn-ghost:hover{background:var(--ivory);color:var(--ink)}
+@media (max-width:860px){.closer-in{grid-template-columns:1fr}.closer-ph{max-width:380px;width:100%}}
+
+/* Pie: frase que entra con el scroll */
+.ftr .big{transition:opacity 1.2s var(--ease-out),transform 1.2s var(--ease-out)}
+
+summary::after{flex:0 0 22px;text-align:center;line-height:1}
+.book-grid>div{min-width:0;overflow-x:clip}
+@media (max-width:860px){.need .bg::after{background:linear-gradient(180deg,rgba(22,22,22,.35) 0%,rgba(22,22,22,.78) 100%)}.need .num{color:rgba(255,255,255,.7)}}
+
+/* Opiniones reales */
+.reviews{background:var(--white)}
+.rev-sum{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.rev-g{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 22px var(--sans);color:var(--white);background:conic-gradient(#4285F4 0 25%,#34A853 0 50%,#FBBC05 0 75%,#EA4335 0)}
+.rev-stars,.stars{color:#E3A92B;letter-spacing:.12em;font-size:18px;line-height:1}
+.rev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.review{margin:0;background:var(--ivory);border-radius:4px;padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:18px;transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out)}
+.review:hover{transform:translateY(-4px);box-shadow:0 30px 60px -40px rgba(48,40,30,.45)}
+.review:nth-child(2){margin-top:clamp(0px,3vw,40px)}
+.review blockquote{margin:0;font-family:var(--serif);font-size:clamp(21px,1.8vw,25px);line-height:1.38;color:var(--ink)}
+.review blockquote::before{content:"“";display:block;font-size:58px;line-height:.55;color:var(--champ);margin-bottom:10px}
+.review figcaption{margin-top:auto;display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+.review .av{width:42px;height:42px;border-radius:50%;background:var(--champ-ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:600}
+.review b{display:block;font-size:14px;color:var(--ink)}
+.review small{font-size:12px;color:var(--muted)}
+@media (max-width:960px){.rev-grid{grid-template-columns:1fr}.review:nth-child(2){margin-top:0}}
+.hero-rev{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:12.5px;color:var(--muted);text-decoration:none;animation:fadeUp .7s .5s var(--ease-out) backwards}
+.hero-rev:hover b{color:var(--champ-ink)}
+.hero-rev b{color:var(--ink);font-weight:600;border-bottom:1px solid var(--champ);transition:color .25s}
+
+@media (prefers-reduced-motion: reduce){
+  .js .imr:not(.in){clip-path:none}.js .imr:not(.in) img{scale:1}
+  img.par{translate:none}.js .h-sec.wsplit:not(.in) .w>span{transform:none}
+  .seal-ring,.brands-track{animation:none}
+}
 </style>
 
 <div class="progress" aria-hidden="true"><i id="pbar"></i></div>
-<div class="proto">Prototipo V3.0 para evaluación · sin cambios en la web publicada</div>
+<div class="proto">Prototipo V3.1 para evaluación · sin cambios en la web publicada</div>
 
 <header class="hdr" id="hdr">
   <div class="wrap">
@@ -546,19 +741,22 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
         <a class="btn btn-wa" href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20valoraci%C3%B3n%20en%20BELSA." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 19.8l1.1-3.9A8.2 8.2 0 1 1 8.4 19z"/><path d="M9.2 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .5.4l.6 1.5c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3 0 .6-.5.8-.6.3-1.4.4-2.2.1a8.4 8.4 0 0 1-4.6-4.6c-.3-.8-.2-1.6.2-2.5z"/></svg> Pide cita por WhatsApp</a>
         <a class="btn btn-ghost" href="#tratamientos">Ver especialidades <span class="arr"></span></a>
       </div>
-      <div class="facts">
-        <span>Medicina estética</span>
-        <span>Estética facial avanzada</span>
-        <span>Estética corporal</span>
-      </div>
+      <a class="hero-rev" href="#opiniones"><span class="stars" aria-hidden="true">★★★★★</span><span>Opiniones reales en Google · <b>Leer reseñas</b></span></a>
+      <ul class="trust">
+        <li><b>Valoración</b><span>médica previa</span></li>
+        <li><b>Plan y presupuesto</b><span>por escrito, sin compromiso</span></li>
+        <li><b>Tecnología</b><span>Cynosure · INDIBA · LPG</span></li>
+      </ul>
     </div>
-    <figure class="arch" style="margin:0">
-      <img class="ph" src="assets/images/portada/belsa-tratamiento-facial-960.webp" srcset="assets/images/portada/belsa-tratamiento-facial-640.webp 640w, assets/images/portada/belsa-tratamiento-facial-960.webp 960w, assets/images/portada/belsa-tratamiento-facial-1280.webp 1280w, assets/images/portada/belsa-tratamiento-facial-1600.webp 1600w" sizes="(max-width:860px) min(420px, 92vw), 40vw" width="960" height="1440" alt="Profesional de BELSA realizando un tratamiento facial a una paciente en cabina" decoding="async" fetchpriority="high" style="object-position:50% 35%">
+    <div class="hero-vis" id="heroVis"><figure class="arch" id="arch" style="margin:0">
+      <img class="ph" src="assets/images/portada/belsa-tratamiento-facial-960.webp" srcset="assets/images/portada/belsa-tratamiento-facial-640.webp 640w, assets/images/portada/belsa-tratamiento-facial-960.webp 960w, assets/images/portada/belsa-tratamiento-facial-1280.webp 1280w, assets/images/portada/belsa-tratamiento-facial-1600.webp 1600w" sizes="(max-width:860px) min(420px, 92vw), 40vw" width="960" height="1440" alt="Profesional de BELSA realizando un tratamiento facial a una paciente en cabina" decoding="async" fetchpriority="high">
     </figure>
+    <a class="seal" href="#reserva"><span class="seal-k">Primera visita</span><span class="seal-v">Valoración <em>personalizada</em></span><span class="seal-a" aria-hidden="true">→</span></a>
+    <svg class="seal-ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="ringP" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#ringP">BELSA · CENTRE MÈDIC ESTÈTIC · SANT CUGAT · </textPath></text></svg>
+    </div>
   </div>
-  <div class="scroll-cue" aria-hidden="true">Desliza<i></i></div>
 </section>
-<div class="ribbon" aria-label="Especialidades de BELSA"><div class="ribbon-track"><div><span>Medicina estética</span><span>Voluminización de labios</span><span>Arrugas de expresión</span><span>PRP y exosomas</span><span>Láser CO2</span><span>Láser Cynosure</span><span>Depilación láser</span><span>Radiofrecuencia fraccionada</span><span>Estética facial</span><span>LPG Endermologie</span><span>Carboxiterapia</span></div><div aria-hidden="true"><span>Medicina estética</span><span>Voluminización de labios</span><span>Arrugas de expresión</span><span>PRP y exosomas</span><span>Láser CO2</span><span>Láser Cynosure</span><span>Depilación láser</span><span>Radiofrecuencia fraccionada</span><span>Estética facial</span><span>LPG Endermologie</span><span>Carboxiterapia</span></div></div></div>
+<div class="ribbon" aria-label="Especialidades de BELSA"><div class="ribbon-track"><div><span>Medicina estética</span><span>Voluminización de labios</span><span>Arrugas de expresión</span><span>PRP y exosomas</span><span>Láser Cynosure</span><span>Depilación láser</span><span>Radiofrecuencia fraccionada</span><span>Estética facial</span><span>LPG Endermologie</span><span>Carboxiterapia</span></div><div aria-hidden="true"><span>Medicina estética</span><span>Voluminización de labios</span><span>Arrugas de expresión</span><span>PRP y exosomas</span><span>Láser Cynosure</span><span>Depilación láser</span><span>Radiofrecuencia fraccionada</span><span>Estética facial</span><span>LPG Endermologie</span><span>Carboxiterapia</span></div></div></div>
 
 <!-- Medicina estética -->
 <section class="sec med" id="medicina-estetica" aria-labelledby="h-med">
@@ -567,25 +765,31 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
       <span class="eyebrow">Medicina estética facial</span>
       <h2 class="h-sec" id="h-med">Realzar, <em>sin cambiar</em> quién eres</h2>
       <p class="lead">Tratamientos médicos mínimamente invasivos para equilibrar y suavizar el rostro con un resultado natural. Cada indicación, producto y cantidad se decide en una valoración médica previa.</p>
+      <figure class="med-ph imr" id="medPh">
+        <img class="on" src="assets/images/faciales/acido-hialuronico-labios-800.webp" srcset="assets/images/faciales/acido-hialuronico-labios-480.webp 480w, assets/images/faciales/acido-hialuronico-labios-800.webp 800w, assets/images/faciales/acido-hialuronico-labios-1200.webp 1200w" sizes="(max-width:900px) 92vw, 38vw" width="1200" height="1800" alt="Médica de BELSA tratando los labios de una paciente con ácido hialurónico" loading="lazy" decoding="async">
+        <img src="assets/images/faciales/tratamiento-facial-medico-800.webp" srcset="assets/images/faciales/tratamiento-facial-medico-480.webp 480w, assets/images/faciales/tratamiento-facial-medico-800.webp 800w" sizes="(max-width:900px) 92vw, 38vw" width="800" height="1200" alt="Médica de BELSA realizando un tratamiento facial con ácido hialurónico" loading="lazy" decoding="async">
+        <img src="assets/images/journal/labios-resultado-natural-800.webp" srcset="assets/images/journal/labios-resultado-natural-480.webp 480w, assets/images/journal/labios-resultado-natural-800.webp 800w" sizes="(max-width:900px) 92vw, 38vw" width="800" height="1200" alt="Profesional de BELSA mostrando el resultado a una paciente con un espejo" loading="lazy" decoding="async">
+        <figcaption><span id="medCap">01 · Labios</span></figcaption>
+      </figure>
       <p class="note">Medicina estética en Sant Cugat del Vallès. Atendemos también a pacientes de Valldoreix, Mira-sol, Bellaterra y Rubí.</p>
     </div>
     <div>
       <ol class="med-list">
-        <li class="med-item rv">
+        <li class="med-item rv" data-i="0" data-cap="01 · Labios">
           <span class="n">01</span>
           <h3>Voluminización de <em>labios</em></h3>
           <p class="txt">Hidratación, definición del contorno o algo más de volumen, siempre proporcionado a tu rostro y respetando la forma natural de tus labios.</p>
           <p class="kw">Aumento y perfilado de labios con ácido hialurónico en Sant Cugat</p>
           <div class="act"><a class="lnk" href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20voluminizaci%C3%B3n%20de%20labios." target="_blank" rel="noopener">Consultar por WhatsApp</a><a class="lnk" href="voluminizacion-de-labios.html">Ver ficha</a><a class="lnk" href="#reserva" style="border-color:var(--stone)">Pedir valoración</a></div>
         </li>
-        <li class="med-item rv">
+        <li class="med-item rv" data-i="1" data-cap="02 · Rinomodelación">
           <span class="n">02</span>
           <h3><em>Rinomodelación</em> sin cirugía</h3>
           <p class="txt">Corrige pequeñas irregularidades del perfil nasal, como una giba leve o una punta caída, sin quirófano y con recuperación rápida.</p>
           <p class="kw">Rinomodelación con ácido hialurónico en Sant Cugat del Vallès</p>
           <div class="act"><a class="lnk" href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20rinomodelaci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp</a><a class="lnk" href="rinomodelacion.html">Ver ficha</a><a class="lnk" href="#reserva" style="border-color:var(--stone)">Pedir valoración</a></div>
         </li>
-        <li class="med-item rv">
+        <li class="med-item rv" data-i="2" data-cap="03 · Armonía facial">
           <span class="n">03</span>
           <h3>Armonía <em>facial</em></h3>
           <p class="txt">Un plan global que estudia las proporciones de pómulos, mentón, mandíbula y labios para que el conjunto se vea equilibrado, no retocado.</p>
@@ -593,7 +797,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
           <div class="act"><a class="lnk" href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20armon%C3%ADa%20facial." target="_blank" rel="noopener">Consultar por WhatsApp</a><a class="lnk" href="armonia-facial.html">Ver ficha</a><a class="lnk" href="#reserva" style="border-color:var(--stone)">Pedir valoración</a></div>
         </li>
       </ol>
-      <div class="med-more rv"><span>Arrugas, PRP y exosomas, láser CO2, manchas, blefaroplastia…</span><a class="lnk" href="medicina-estetica-facial.html" style="font-family:var(--sans)">Ver toda la medicina estética facial</a></div>
+      <div class="med-more rv"><span>Arrugas, PRP y exosomas, manchas, blefaroplastia…</span><a class="lnk" href="medicina-estetica-facial.html" style="font-family:var(--sans)">Ver toda la medicina estética facial</a></div>
     </div>
   </div>
 </section>
@@ -607,7 +811,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     </div>
     <div class="explore rv" id="explore">
       <article class="need active" data-k="1">
-        <div class="bg"></div><span class="num">i.</span>
+        <div class="bg"><img src="assets/images/faciales/higiene-facial-800.webp" srcset="assets/images/faciales/higiene-facial-480.webp 480w, assets/images/faciales/higiene-facial-800.webp 800w, assets/images/faciales/higiene-facial-1200.webp 1200w" sizes="(max-width:860px) 92vw, 50vw" width="1200" height="1800" alt="" loading="lazy" decoding="async"></div><span class="num">i.</span>
         <button class="need-btn" aria-expanded="true" aria-controls="n1">Luminosidad</button>
         <div class="body"><h3>Luminosidad</h3>
           <div class="more" id="n1"><div>
@@ -617,7 +821,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
           </div></div></div>
       </article>
       <article class="need" data-k="2">
-        <div class="bg"></div><span class="num">ii.</span>
+        <div class="bg"><img src="assets/images/metodo/personalizar-800.webp" srcset="assets/images/metodo/personalizar-480.webp 480w, assets/images/metodo/personalizar-800.webp 800w, assets/images/metodo/personalizar-1200.webp 1200w" sizes="(max-width:860px) 92vw, 50vw" width="1200" height="1800" alt="" loading="lazy" decoding="async"></div><span class="num">ii.</span>
         <button class="need-btn" aria-expanded="false" aria-controls="n2">Firmeza</button>
         <div class="body"><h3>Firmeza</h3>
           <div class="more" id="n2"><div>
@@ -627,7 +831,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
           </div></div></div>
       </article>
       <article class="need" data-k="3">
-        <div class="bg"></div><span class="num">iii.</span>
+        <div class="bg"><img src="assets/images/tecnologias/reverso-800.webp" srcset="assets/images/tecnologias/reverso-480.webp 480w, assets/images/tecnologias/reverso-800.webp 800w, assets/images/tecnologias/reverso-1200.webp 1200w" sizes="(max-width:860px) 92vw, 50vw" width="1200" height="1800" alt="" loading="lazy" decoding="async"></div><span class="num">iii.</span>
         <button class="need-btn" aria-expanded="false" aria-controls="n3">Textura</button>
         <div class="body"><h3>Textura</h3>
           <div class="more" id="n3"><div>
@@ -637,7 +841,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
           </div></div></div>
       </article>
       <article class="need" data-k="4">
-        <div class="bg"></div><span class="num">iv.</span>
+        <div class="bg"><img src="assets/images/corporales/lpg-remodelacion-corporal-800.webp" srcset="assets/images/corporales/lpg-remodelacion-corporal-480.webp 480w, assets/images/corporales/lpg-remodelacion-corporal-800.webp 800w" sizes="(max-width:860px) 92vw, 50vw" width="800" height="1200" alt="" loading="lazy" decoding="async"></div><span class="num">iv.</span>
         <button class="need-btn" aria-expanded="false" aria-controls="n4">Corporal</button>
         <div class="body"><h3>Corporal</h3>
           <div class="more" id="n4"><div>
@@ -659,15 +863,11 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     </div>
   </div>
   <div class="wrap">
-    <div class="pano" id="pano">
-      <div class="frame"><div class="img" id="panoImg"><img data-k="g1" class="on" src="assets/images/experiencia/recepcion-belsa-800.webp" srcset="assets/images/experiencia/recepcion-belsa-480.webp 480w, assets/images/experiencia/recepcion-belsa-800.webp 800w" sizes="100vw" width="800" height="1200" alt="Recepción del centro BELSA en Sant Cugat del Vallès" loading="lazy" decoding="async" style="object-position:50% 78%"><img data-k="g2" src="assets/images/experiencia/cabina-facial-800.webp" srcset="assets/images/experiencia/cabina-facial-480.webp 480w, assets/images/experiencia/cabina-facial-800.webp 800w, assets/images/experiencia/cabina-facial-1200.webp 1200w" sizes="100vw" width="800" height="533" alt="Cabina facial de BELSA con camilla y equipo de tratamiento" loading="lazy" decoding="async"><img data-k="g3" src="assets/images/experiencia/cabina-corporal-800.webp" srcset="assets/images/experiencia/cabina-corporal-480.webp 480w, assets/images/experiencia/cabina-corporal-800.webp 800w, assets/images/experiencia/cabina-corporal-1200.webp 1200w" sizes="100vw" width="800" height="533" alt="Cabina corporal de BELSA con camilla y aparatología" loading="lazy" decoding="async"></div>
-        <div class="cap"><p id="panoCap">La recepción, pensada para que la espera también sea calma.</p></div>
-      </div>
-    </div>
-    <div class="gallery" role="group" aria-label="Espacios del centro">
-      <button aria-pressed="true" data-cap="La recepción, pensada para que la espera también sea calma." data-bg="g1"><img class="g" src="assets/images/experiencia/recepcion-belsa-800.webp" srcset="assets/images/experiencia/recepcion-belsa-480.webp 480w, assets/images/experiencia/recepcion-belsa-800.webp 800w" sizes="(max-width:860px) 33vw, 400px" width="800" height="1200" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"><span>Recepción</span></button>
-      <button aria-pressed="false" data-cap="Cabina facial con luz regulable y camilla calefactada." data-bg="g2"><img class="g" src="assets/images/experiencia/cabina-facial-800.webp" srcset="assets/images/experiencia/cabina-facial-480.webp 480w, assets/images/experiencia/cabina-facial-800.webp 800w, assets/images/experiencia/cabina-facial-1200.webp 1200w" sizes="(max-width:860px) 33vw, 400px" width="800" height="533" alt="" loading="lazy" decoding="async"><span>Cabina facial</span></button>
-      <button aria-pressed="false" data-cap="Cabina corporal privada para INDIBA y LPG Endermologie." data-bg="g3"><img class="g" src="assets/images/experiencia/cabina-corporal-800.webp" srcset="assets/images/experiencia/cabina-corporal-480.webp 480w, assets/images/experiencia/cabina-corporal-800.webp 800w, assets/images/experiencia/cabina-corporal-1200.webp 1200w" sizes="(max-width:860px) 33vw, 400px" width="800" height="533" alt="" loading="lazy" decoding="async"><span>Cabina corporal</span></button>
+    <div class="space">
+      <figure class="sp sp-a imr"><img class="par" src="assets/images/experiencia/recepcion-belsa-800.webp" srcset="assets/images/experiencia/recepcion-belsa-480.webp 480w, assets/images/experiencia/recepcion-belsa-800.webp 800w" sizes="(max-width:860px) 92vw, 40vw" width="800" height="1200" alt="Recepción del centro BELSA en Sant Cugat del Vallès" loading="lazy" decoding="async"><figcaption><b>Recepción</b><span>La espera también es calma.</span></figcaption></figure>
+      <figure class="sp sp-b imr"><img class="par" src="assets/images/experiencia/cabina-facial-800.webp" srcset="assets/images/experiencia/cabina-facial-480.webp 480w, assets/images/experiencia/cabina-facial-800.webp 800w, assets/images/experiencia/cabina-facial-1200.webp 1200w" sizes="(max-width:860px) 92vw, 56vw" width="1200" height="800" alt="Cabina facial de BELSA con camilla y equipo de tratamiento" loading="lazy" decoding="async"><figcaption><b>Cabina facial</b><span>Luz regulable y camilla calefactada.</span></figcaption></figure>
+      <figure class="sp sp-c imr"><img class="par" src="assets/images/experiencia/cabina-corporal-800.webp" srcset="assets/images/experiencia/cabina-corporal-480.webp 480w, assets/images/experiencia/cabina-corporal-800.webp 800w, assets/images/experiencia/cabina-corporal-1200.webp 1200w" sizes="(max-width:860px) 92vw, 56vw" width="1200" height="800" alt="Cabina corporal de BELSA con camilla y aparatología" loading="lazy" decoding="async"><figcaption><b>Cabina corporal</b><span>Privada, para INDIBA y LPG Endermologie.</span></figcaption></figure>
+      <p class="sp-quote rv">“Cabinas privadas, <em>sin prisas</em> y con el tiempo que necesita tu piel.”</p>
     </div>
   </div>
 </section>
@@ -699,19 +899,19 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     <div class="spec-grid">
       <article class="spec rv">
         <a class="spec-link" href="medicina-estetica-facial.html" aria-label="Ver la página de medicina estética facial"></a>
-        <div class="vis"><img src="assets/images/especialidades/medicina-estetica-800.webp" srcset="assets/images/especialidades/medicina-estetica-480.webp 480w, assets/images/especialidades/medicina-estetica-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Profesional de BELSA realizando un tratamiento de medicina estética a un paciente" loading="lazy" decoding="async" style="object-position:50% 30%"><span class="spec-n">01</span></div>
+        <div class="vis imr"><img class="par" src="assets/images/especialidades/medicina-estetica-800.webp" srcset="assets/images/especialidades/medicina-estetica-480.webp 480w, assets/images/especialidades/medicina-estetica-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Profesional de BELSA realizando un tratamiento de medicina estética a un paciente" loading="lazy" decoding="async"><span class="spec-n">01</span></div>
         <div class="in">
           <span class="eyebrow">Rostro · Medicina</span>
           <h3>Medicina <em>estética</em></h3>
           <p>Tratamientos médicos mínimamente invasivos para equilibrar y realzar el rostro con un resultado natural.</p>
           <p class="incl-t">Incluye, entre otros</p>
-          <ul class="incl"><li>Labios</li><li>Arrugas de expresión</li><li>PRP y exosomas</li><li>Láser CO2</li><li>Depilación láser</li></ul>
+          <ul class="incl"><li>Labios</li><li>Arrugas de expresión</li><li>PRP y exosomas</li><li>Depilación láser</li></ul>
           <span class="lnk spec-cta">Ver medicina estética facial</span>
         </div>
       </article>
       <article class="spec rv">
         <a class="spec-link" href="estetica-facial.html" aria-label="Ver la página de estética facial"></a>
-        <div class="vis"><img src="assets/images/especialidades/estetica-facial-800.webp" srcset="assets/images/especialidades/estetica-facial-480.webp 480w, assets/images/especialidades/estetica-facial-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Tratamiento de estética facial con aparatología sobre la piel del rostro" loading="lazy" decoding="async" style="object-position:50% 62%"><span class="spec-n">02</span></div>
+        <div class="vis imr"><img class="par" src="assets/images/especialidades/estetica-facial-800.webp" srcset="assets/images/especialidades/estetica-facial-480.webp 480w, assets/images/especialidades/estetica-facial-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Tratamiento de estética facial con aparatología sobre la piel del rostro" loading="lazy" decoding="async"><span class="spec-n">02</span></div>
         <div class="in">
           <span class="eyebrow">Rostro · Piel</span>
           <h3>Estética <em>facial</em> avanzada</h3>
@@ -723,7 +923,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
       </article>
       <article class="spec rv">
         <a class="spec-link" href="estetica-corporal.html" aria-label="Ver la página de estética corporal"></a>
-        <div class="vis"><img src="assets/images/corporales/tratamiento-corporal-tecnologia-800.webp" srcset="assets/images/corporales/tratamiento-corporal-tecnologia-480.webp 480w, assets/images/corporales/tratamiento-corporal-tecnologia-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Tratamiento corporal con equipo LPG en cabina" loading="lazy" decoding="async" style="object-position:50% 60%"><span class="spec-n">03</span></div>
+        <div class="vis imr"><img class="par" src="assets/images/corporales/tratamiento-corporal-tecnologia-800.webp" srcset="assets/images/corporales/tratamiento-corporal-tecnologia-480.webp 480w, assets/images/corporales/tratamiento-corporal-tecnologia-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 400px" width="800" height="1200" alt="Tratamiento corporal con equipo LPG en cabina" loading="lazy" decoding="async"><span class="spec-n">03</span></div>
         <div class="in">
           <span class="eyebrow">Cuerpo</span>
           <h3>Estética <em>corporal</em></h3>
@@ -760,7 +960,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
       <p class="lead">Estamos preparando casos reales de pacientes de BELSA. Solo los publicaremos con su autorización por escrito.</p>
     </div>
     <div class="ba-grid">
-      <div class="rv ba-empty"><span class="eyebrow">Casos reales</span><p>En preparación</p></div>
+      <div class="ba-ph imr"><img class="par" src="assets/images/metodo/valorar-800.webp" srcset="assets/images/metodo/valorar-480.webp 480w, assets/images/metodo/valorar-800.webp 800w, assets/images/metodo/valorar-1200.webp 1200w" sizes="(max-width:900px) 92vw, 60vw" width="1200" height="1800" alt="Profesional de BELSA valorando el rostro de una paciente" loading="lazy" decoding="async"><div class="ba-ov"><span class="eyebrow">Casos reales · en preparación</span><p>Cada caso, documentado con la <em>misma luz</em> y el permiso de la paciente.</p></div></div>
       <aside class="case rv">
         <p class="notice">Solo publicaremos fotografías originales de la misma persona, con su autorización por escrito y sin retoque anatómico. Cada resultado es individual y no garantiza el mismo efecto en otra persona.</p>
         <a class="btn btn-ghost" href="#reserva" style="color:var(--ivory);border-color:var(--stone)">Valorar mi caso <span class="arr"></span></a>
@@ -777,31 +977,44 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
       <p class="lead">Mostraremos cada credencial verificada: titulación, número de colegiación cuando corresponda y formación específica en cada tecnología.</p>
     </div>
     <div class="team">
-      <article class="pro rv"><div class="por"><img src="assets/images/equipo/dra-asadi-800.webp" srcset="assets/images/equipo/dra-asadi-480.webp 480w, assets/images/equipo/dra-asadi-800.webp 800w" sizes="(max-width:860px) 420px, 33vw" width="800" height="1200" alt="Dra. Asadi, médica estética de BELSA" loading="lazy" decoding="async" style="object-position:50% 45%"></div>
-        <div><p class="role">Médica estética</p><h3>Dra. Asadi</h3></div></article>
-      <article class="pro rv"><div class="por"><img src="assets/images/equipo/dra-garrote-927.webp" srcset="assets/images/equipo/dra-garrote-480.webp 480w, assets/images/equipo/dra-garrote-927.webp 927w" sizes="(max-width:860px) 420px, 33vw" width="927" height="1600" alt="Dra. Garrote, médica estética de BELSA" loading="lazy" decoding="async" style="object-position:50% 0%"></div>
+      <article class="pro rv"><div class="por imr"><img class="par" src="assets/images/equipo/dra-asadi-800.webp" srcset="assets/images/equipo/dra-asadi-480.webp 480w, assets/images/equipo/dra-asadi-800.webp 800w" sizes="(max-width:860px) 420px, 33vw" width="800" height="1200" alt="Dra. Muna Asadi, médica estética de BELSA" loading="lazy" decoding="async"></div>
+        <div><p class="role">Médica estética</p><h3>Dra. Muna Asadi</h3></div></article>
+      <article class="pro rv"><div class="por imr"><img class="par" src="assets/images/equipo/dra-garrote-927.webp" srcset="assets/images/equipo/dra-garrote-480.webp 480w, assets/images/equipo/dra-garrote-927.webp 927w" sizes="(max-width:860px) 420px, 33vw" width="927" height="1600" alt="Dra. Garrote, médica estética de BELSA" loading="lazy" decoding="async"></div>
         <div><p class="role">Médica estética</p><h3>Dra. Garrote</h3></div></article>
-      <article class="pro rv"><div class="por"><img src="assets/images/equipo/maria-antonia-800.webp" srcset="assets/images/equipo/maria-antonia-480.webp 480w, assets/images/equipo/maria-antonia-800.webp 800w, assets/images/equipo/maria-antonia-1200.webp 1200w" sizes="(max-width:860px) 420px, 33vw" width="800" height="1200" alt="María Antonia, especialista en estética de BELSA" loading="lazy" decoding="async" style="object-position:50% 12%"></div>
+      <article class="pro rv"><div class="por imr"><img class="par" src="assets/images/equipo/maria-antonia-800.webp" srcset="assets/images/equipo/maria-antonia-480.webp 480w, assets/images/equipo/maria-antonia-800.webp 800w, assets/images/equipo/maria-antonia-1200.webp 1200w" sizes="(max-width:860px) 420px, 33vw" width="800" height="1200" alt="María Antonia, especialista en estética de BELSA" loading="lazy" decoding="async"></div>
         <div><p class="role">Especialista en estética</p><h3>María Antonia</h3></div></article>
     </div>
   </div>
 </section>
 
-<!-- 08 · Experiencias verificadas -->
-<section class="sec testi" id="opiniones" aria-labelledby="h-op">
+<!-- 08 · Por qué BELSA (las opiniones se añadirán cuando haya reseñas reales enlazadas) -->
+<section class="sec why" id="por-que" aria-labelledby="h-why">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><span class="eyebrow">Experiencias verificadas</span><h2 class="h-sec" id="h-op">Lo que cuentan <em>quienes vienen</em></h2></div>
-      <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
-        <p class="lead" style="max-width:40ch">Formato de muestra. Se sustituirá por reseñas reales enlazadas a su fuente.</p>
-        <div class="car-nav"><button class="round" id="prev" aria-label="Opinión anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="round" id="next" aria-label="Opinión siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
-      </div>
+      <div><span class="eyebrow">Por qué BELSA</span><h2 class="h-sec" id="h-why">Lo que encontrarás <em>desde la primera visita</em></h2></div>
+      <p class="lead">Un centro médico estético en Sant Cugat donde cada decisión se toma con criterio profesional, tecnología de referencia y tiempo para escucharte.</p>
     </div>
-    <div class="track" id="track" tabindex="0" aria-label="Opiniones">
-      <article class="quote"><blockquote>Aquí irá el texto literal de una reseña verificada sobre la primera valoración.</blockquote><footer><span>Inicial del nombre · tratamiento</span><span class="tag warn">Ejemplo de formato</span></footer></article>
-      <article class="quote"><blockquote>Aquí irá una reseña real sobre un plan con INDIBA, con su enlace a la fuente original.</blockquote><footer><span>Inicial del nombre · INDIBA</span><span class="tag warn">Ejemplo de formato</span></footer></article>
-      <article class="quote"><blockquote>Aquí irá una reseña real sobre LPG Endermologie y el seguimiento entre sesiones.</blockquote><footer><span>Inicial del nombre · LPG</span><span class="tag warn">Ejemplo de formato</span></footer></article>
-      <article class="quote"><blockquote>Aquí irá una reseña real sobre el trato y el espacio del centro.</blockquote><footer><span>Inicial del nombre · experiencia</span><span class="tag warn">Ejemplo de formato</span></footer></article>
+    <ol class="why-list">
+      <li class="rv"><span class="why-n">01</span><h3>Criterio <em>médico</em></h3><p>Los tratamientos de medicina estética los indican y realizan médicas, siempre tras una valoración.</p></li>
+      <li class="rv"><span class="why-n">02</span><h3>Plan <em>por escrito</em></h3><p>Sales con el tratamiento indicado, las sesiones orientativas y el presupuesto cerrado. Sin compromiso.</p></li>
+      <li class="rv"><span class="why-n">03</span><h3>Tecnología <em>de referencia</em></h3><p>Láser Cynosure, INDIBA, LPG Cellu M6, Reverso, FHOS y más, en cabinas privadas.</p></li>
+      <li class="rv"><span class="why-n">04</span><h3>Resultado <em>natural</em></h3><p>Buscamos que te veas mejor, no distinta. Si un tratamiento no te conviene, te lo decimos.</p></li>
+    </ol>
+    <div class="brands" aria-label="Tecnologías del centro"><div class="brands-track"><div><span>Cynosure</span><span>INDIBA</span><span>LPG Endermologie</span><span>Reverso</span><span>FHOS Bioluminiscent</span><span>Termosalud Symed</span><span>Mediderma Nanopore</span><span>Carbtek</span></div><div aria-hidden="true"><span>Cynosure</span><span>INDIBA</span><span>LPG Endermologie</span><span>Reverso</span><span>FHOS Bioluminiscent</span><span>Termosalud Symed</span><span>Mediderma Nanopore</span><span>Carbtek</span></div></div></div>
+  </div>
+</section>
+
+<!-- Opiniones reales de Google -->
+<section class="sec reviews" id="opiniones" aria-labelledby="h-op">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Opiniones en Google</span><h2 class="h-sec" id="h-op">Lo que cuentan <em>quienes vienen</em></h2></div>
+      <div class="rev-sum"><span class="rev-g" aria-hidden="true">G</span><div><p class="rev-stars">★★★★★</p><p class="small">Reseñas reales de pacientes, publicadas en Google.</p></div><a class="lnk" href="https://www.google.com/maps/search/?api=1&query=BELSA%20Centre%20M%C3%A8dic%20Est%C3%A8tic%2C%20C%2FSant%20Jordi%2030-32%2C%2008172%20Sant%20Cugat%20del%20Vall%C3%A8s" target="_blank" rel="noopener">Ver en Google</a></div>
+    </div>
+    <div class="rev-grid">
+      <figure class="review rv"><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><blockquote>La Dra. Muna Asadi es muy respetuosa con tus deseos y con los tratamientos que te propone, buscando siempre la mejor solución. Llevo años confiando en ella. El equipo de Belsa es muy atento y cercano. Muy contenta con los resultados.</blockquote><figcaption><span class="av" aria-hidden="true">B</span><span><b>Berta T.</b><small>Medicina estética · Google</small></span></figcaption></figure>
+      <figure class="review rv"><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><blockquote>Llevo 15 años o más haciéndome tratamientos y el trato que he recibido ha sido siempre muy cercano y profesional. Se nota el cuidado de los detalles y la dedicación con la que trabajan. Lo recomiendo por la calidad del servicio y atención del personal.</blockquote><figcaption><span class="av" aria-hidden="true">C</span><span><b>Conchita S.</b><small>Clienta desde hace más de 15 años · Google</small></span></figcaption></figure>
+      <figure class="review rv"><span class="stars" aria-label="5 de 5 estrellas">★★★★★</span><blockquote>Excelente experiencia con el tratamiento de LPG. He notado una mejora visible en la firmeza, reducción y textura de la piel. El personal es muy profesional y atento, y el ambiente del centro es agradable y relajante. Recomendable a cualquiera que busque calidad y confianza. Un centro de estética de 10.</blockquote><figcaption><span class="av" aria-hidden="true">M</span><span><b>Marisa M.</b><small>LPG Endermologie · Google</small></span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -820,11 +1033,23 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
       <button class="cat" aria-pressed="false" data-c="cor">Corporal</button>
     </div>
     <div class="posts">
-      <a class="post rv" href="journal-indiba-o-radiofrecuencia.html" data-c="tec fac"><div class="pv"><img src="assets/images/journal/indiba-radiofrecuencia-739.webp" srcset="assets/images/journal/indiba-radiofrecuencia-480.webp 480w, assets/images/journal/indiba-radiofrecuencia-739.webp 739w" sizes="(max-width:900px) 100vw, 480px" width="739" height="663" alt="Ilustración de radiofrecuencia aplicada sobre la piel" loading="lazy" decoding="async"></div><span class="meta">Tecnologías · 6 min</span><h3>INDIBA o radiofrecuencia convencional: qué cambia y cuándo se indica</h3><p>Qué significa trabajar a 448 kHz, para qué tipo de piel se valora y qué preguntar en consulta.</p></a>
-      <a class="post rv" href="journal-lpg-primeras-sesiones.html" data-c="cor tec"><div class="pv"><img src="assets/images/journal/lpg-endermologie-629.webp" width="629" height="938" alt="Sesión de LPG Endermologie en el abdomen" loading="lazy" decoding="async" style="object-position:50% 60%"></div><span class="meta">Corporal · 5 min</span><h3>LPG Endermologie: qué esperar de las primeras sesiones</h3><p>Cómo es una sesión, qué notarás y cómo se mide la evolución.</p></a>
-      <a class="post rv" href="journal-luminosidad-despues-del-verano.html" data-c="fac"><div class="pv"><img src="assets/images/journal/luminosidad-523.webp" width="523" height="936" alt="Productos de cuidado facial sobre un tocador" loading="lazy" decoding="async" style="object-position:50% 55%"></div><span class="meta">Facial · 4 min</span><h3>Recuperar la luminosidad de la piel después del verano</h3><p>Rutina en casa y tratamientos en cabina, explicados paso a paso.</p></a>
+      <a class="post rv" href="journal-indiba-o-radiofrecuencia.html" data-c="tec fac"><div class="pv imr"><img class="par" src="assets/images/journal/indiba-radiofrecuencia-739.webp" srcset="assets/images/journal/indiba-radiofrecuencia-480.webp 480w, assets/images/journal/indiba-radiofrecuencia-739.webp 739w" sizes="(max-width:900px) 100vw, 480px" width="739" height="663" alt="Ilustración de radiofrecuencia aplicada sobre la piel" loading="lazy" decoding="async"></div><span class="meta">Tecnologías · 6 min</span><h3>INDIBA o radiofrecuencia convencional: qué cambia y cuándo se indica</h3><p>Qué significa trabajar a 448 kHz, para qué tipo de piel se valora y qué preguntar en consulta.</p></a>
+      <a class="post rv" href="journal-lpg-primeras-sesiones.html" data-c="cor tec"><div class="pv imr"><img class="par" src="assets/images/journal/lpg-endermologie-629.webp" width="629" height="938" alt="Sesión de LPG Endermologie en el abdomen" loading="lazy" decoding="async"></div><span class="meta">Corporal · 5 min</span><h3>LPG Endermologie: qué esperar de las primeras sesiones</h3><p>Cómo es una sesión, qué notarás y cómo se mide la evolución.</p></a>
+      <a class="post rv" href="journal-luminosidad-despues-del-verano.html" data-c="fac"><div class="pv imr"><img class="par" src="assets/images/journal/luminosidad-523.webp" width="523" height="936" alt="Productos de cuidado facial sobre un tocador" loading="lazy" decoding="async"></div><span class="meta">Facial · 4 min</span><h3>Recuperar la luminosidad de la piel después del verano</h3><p>Rutina en casa y tratamientos en cabina, explicados paso a paso.</p></a>
     </div>
     <p class="rv" style="margin-top:34px"><a class="lnk" href="journal.html">Ver todo el BELSA Journal</a></p>
+  </div>
+</section>
+
+<!-- Llamada final con foto -->
+<section class="closer" aria-label="Pide tu valoración">
+  
+  <div class="wrap closer-in"><div>
+    <p class="closer-t rv">Tu piel, <em>con un plan</em>.<br>Empieza por una valoración.</p>
+    <p class="closer-sub rv">Cuéntanos qué te gustaría mejorar. Te orientamos por WhatsApp y te proponemos hora para una primera visita en Sant Cugat.</p>
+    <div class="closer-act rv"><a class="btn btn-wa" href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20valoraci%C3%B3n%20en%20BELSA." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 19.8l1.1-3.9A8.2 8.2 0 1 1 8.4 19z"/><path d="M9.2 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .5.4l.6 1.5c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3 0 .6-.5.8-.6.3-1.4.4-2.2.1a8.4 8.4 0 0 1-4.6-4.6c-.3-.8-.2-1.6.2-2.5z"/></svg> Reservar por WhatsApp</a><a class="btn btn-ghost" href="#reserva">Prefiero que me llaméis <span class="arr"></span></a></div>
+    </div>
+    <figure class="closer-ph imr"><img class="par" src="assets/images/faciales/tratamiento-facial-aparatologia-800.webp" srcset="assets/images/faciales/tratamiento-facial-aparatologia-480.webp 480w, assets/images/faciales/tratamiento-facial-aparatologia-800.webp 800w, assets/images/faciales/tratamiento-facial-aparatologia-1200.webp 1200w" sizes="(max-width:860px) 92vw, 34vw" width="1200" height="1800" alt="Profesional de BELSA aplicando un tratamiento facial con aparatología" loading="lazy" decoding="async"></figure>
   </div>
 </section>
 
@@ -848,6 +1073,7 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
         <li><b>WhatsApp</b><a href="https://wa.me/34660433234?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20cita%20en%20BELSA." target="_blank" rel="noopener">+34 660 43 32 34</a></li>
         <li><b>Teléfono</b><a href="tel:+34660433234">+34 660 43 32 34</a></li>
         <li><b>Correo</b><a href="mailto:info@belsaestetic.com">info@belsaestetic.com</a></li>
+        <li><b>Horario</b><span>Lunes a viernes, de 9:30 a 19:00</span></li>
         <li><b>Dirección</b><a href="https://www.google.com/maps/search/?api=1&query=BELSA%20Centre%20M%C3%A8dic%20Est%C3%A8tic%2C%20C%2FSant%20Jordi%2030-32%2C%2008172%20Sant%20Cugat%20del%20Vall%C3%A8s" target="_blank" rel="noopener">C/ Sant Jordi 30-32, 1º 7ª · 08172 Sant Cugat del Vallès</a></li>
       </ul>
     </div>
@@ -873,12 +1099,12 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
   <div class="wrap">
     <p class="big">Belleza natural,<br><em>criterio profesional.</em></p>
     <div class="f-grid">
-      <div><h4>BELSA Centre Mèdic Estètic</h4><ul><li><a href="https://www.google.com/maps/search/?api=1&query=BELSA%20Centre%20M%C3%A8dic%20Est%C3%A8tic%2C%20C%2FSant%20Jordi%2030-32%2C%2008172%20Sant%20Cugat%20del%20Vall%C3%A8s" target="_blank" rel="noopener">C/ Sant Jordi 30-32, 1º 7ª<br>08172 Sant Cugat del Vallès</a></li><li><a href="tel:+34660433234">+34 660 43 32 34</a></li><li><a href="mailto:info@belsaestetic.com">info@belsaestetic.com</a></li><li>Horario pendiente</li></ul></div>
+      <div><h4>BELSA Centre Mèdic Estètic</h4><ul><li><a href="https://www.google.com/maps/search/?api=1&query=BELSA%20Centre%20M%C3%A8dic%20Est%C3%A8tic%2C%20C%2FSant%20Jordi%2030-32%2C%2008172%20Sant%20Cugat%20del%20Vall%C3%A8s" target="_blank" rel="noopener">C/ Sant Jordi 30-32, 1º 7ª<br>08172 Sant Cugat del Vallès</a></li><li><a href="tel:+34660433234">+34 660 43 32 34</a></li><li><a href="mailto:info@belsaestetic.com">info@belsaestetic.com</a></li><li>Lunes a viernes<br>9:30 a 19:00</li></ul></div>
       <div><h4>Especialidades</h4><ul><li><a href="medicina-estetica-facial.html">Medicina estética facial</a></li><li><a href="medicina-estetica-corporal.html">Medicina estética corporal</a></li><li><a href="estetica-facial.html">Estética facial</a></li><li><a href="estetica-corporal.html">Estética corporal</a></li><li><a href="tecnologias.html">Tecnologías: INDIBA y LPG</a></li><li><a href="journal.html">BELSA Journal</a></li></ul></div>
-      <div><h4>Medicina estética</h4><ul><li><a href="voluminizacion-de-labios.html">Voluminización de labios en Sant Cugat</a></li><li><a href="arrugas-de-expresion.html">Arrugas de expresión</a></li><li><a href="plasma-rico-en-plaquetas-y-exosomas.html">PRP y exosomas</a></li><li><a href="laser-co2.html">Láser CO2</a></li><li><a href="laser-manchas-y-rojeces.html">Láser para manchas y rojeces</a></li><li><a href="depilacion-laser.html">Depilación láser en Sant Cugat</a></li></ul></div>
+      <div><h4>Medicina estética</h4><ul><li><a href="voluminizacion-de-labios.html">Voluminización de labios en Sant Cugat</a></li><li><a href="arrugas-de-expresion.html">Arrugas de expresión</a></li><li><a href="plasma-rico-en-plaquetas-y-exosomas.html">PRP y exosomas</a></li><li><a href="laser-manchas-y-rojeces.html">Láser para manchas y rojeces</a></li><li><a href="depilacion-laser.html">Depilación láser en Sant Cugat</a></li></ul></div>
       <div><h4>Cerca de ti</h4><ul><li>Valldoreix</li><li>Mira-sol</li><li>Bellaterra</li><li>Rubí</li></ul></div>
     </div>
-    <div class="f-bottom"><span>© 2026 BELSA Centre Mèdic Estètic</span><span>Aviso legal · Privacidad · Cookies</span><span>Propuesta V3.0 · sin cambios en producción</span></div>
+    <div class="f-bottom"><span>© 2026 BELSA Centre Mèdic Estètic</span><span>Aviso legal · Privacidad · Cookies</span><span>Propuesta V3.1 · sin cambios en producción</span></div>
   </div>
 </footer>
 
@@ -911,6 +1137,22 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
   const nav=document.getElementById('nav'), menuBtn=document.getElementById('menuBtn');
   menuBtn.addEventListener('click',()=>{const o=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
 
+  /* Titulares palabra a palabra */
+  document.querySelectorAll('.h-sec').forEach(h=>{
+    let i=0;
+    const walk=n=>[...n.childNodes].forEach(c=>{
+      if(c.nodeType===3){
+        const parts=c.textContent.split(/(\s+)/); const frag=document.createDocumentFragment(); let glue=!!c.previousSibling && /^\S/.test(c.textContent);
+        parts.forEach(w=>{ if(!w) return; if(/^\s+$/.test(w)){frag.appendChild(document.createTextNode(w));return}
+          const o=document.createElement('span');o.className='w';const s=document.createElement('span');s.style.setProperty('--i',i++);s.textContent=w;o.appendChild(s);
+          if(glue){glue=false;const nb=document.createElement('span');nb.style.whiteSpace='nowrap';const prev=c.previousSibling;prev.replaceWith(nb);nb.appendChild(prev);nb.appendChild(o);return} frag.appendChild(o)});
+        c.replaceWith(frag);
+      } else if(c.nodeType===1 && c.tagName!=='BR') walk(c);
+    });
+    walk(h); h.classList.add('wsplit','rv');
+  });
+  document.querySelectorAll('.imr').forEach(el=>el.classList.add('rv'));
+
   /* Revelados */
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach((el,i)=>{
@@ -918,9 +1160,20 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
   });
 
   /* Scroll: progreso, cabecera, panorámica, método, barra móvil */
-  const pbar=document.getElementById('pbar'), hdr=document.getElementById('hdr'), pano=document.getElementById('pano'),
+  const pbar=document.getElementById('pbar'), hdr=document.getElementById('hdr'),
         method=document.getElementById('metodo'), steps=[...document.querySelectorAll('.step')], mbar=document.getElementById('mbar'),
         reserva=document.getElementById('reserva'), waFloat=document.getElementById('waFloat');
+  const pars=[...document.querySelectorAll('img.par')], arch=document.getElementById('arch'), heroTxt=document.querySelector('.hero .wrap>div:first-child'),
+        medItems=[...document.querySelectorAll('.med-item')], medPics=[...document.querySelectorAll('#medPh img')], medCap=document.getElementById('medCap');
+  let medCur=0, lastY=scrollY, vel=0;
+  /* Cinta continua cuya velocidad responde al scroll */
+  const rib=document.querySelector('.ribbon-track');
+  if(rib && !RM){
+    rib.style.animation='none'; let x=0;
+    const loop=()=>{ vel*=0.92; x-=0.5+Math.min(Math.abs(vel),60)*0.25; const half=rib.scrollWidth/2; if(-x>=half) x+=half;
+      rib.style.transform='translate3d('+x.toFixed(1)+'px,0,0) skewX('+clamp(-vel*0.12,-8,8).toFixed(2)+'deg)'; requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
   let ticking=false;
   function frame(){
     ticking=false;
@@ -928,9 +1181,25 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     pbar.style.transform='scaleX('+(H>0?y/H:0)+')';
     hdr.classList.toggle('scrolled',y>30);
     if(!RM){
-      const r=pano.getBoundingClientRect();
-      pano.style.setProperty('--p',clamp((innerHeight-r.top)/(innerHeight*0.85),0,1).toFixed(3));
+      /* Parallax de fotos dentro de su marco */
+      pars.forEach(im=>{
+        const box=im.parentElement.getBoundingClientRect();
+        if(box.bottom<-100||box.top>innerHeight+100) return;
+        const c=(box.top+box.height/2-innerHeight/2)/(innerHeight/2+box.height/2);
+        im.style.setProperty('--py',(clamp(c,-1,1)*-box.height*0.065).toFixed(1)+'px');
+      });
+      /* Portada: el arco se aleja y el texto sube al hacer scroll */
+      if(y<innerHeight*1.2){
+        const k=clamp(y/innerHeight,0,1);
+        arch.style.transform='translateY('+(k*60).toFixed(1)+'px) scale('+(1-k*0.06).toFixed(3)+')';
+        heroTxt.style.transform='translateY('+(-k*40).toFixed(1)+'px)'; heroTxt.style.opacity=(1-k*0.6).toFixed(3);
+      }
+      /* Cinta: acelera y se inclina con la velocidad del scroll */
+      const v=y-lastY; lastY=y; vel+=(v-vel)*0.2;
     }
+    /* Medicina estética: la foto cambia con el tratamiento que está en pantalla */
+    let cur=0; medItems.forEach((m,i)=>{ if(m.getBoundingClientRect().top<innerHeight*0.55) cur=i; });
+    if(cur!==medCur){ medCur=cur; medItems.forEach((m,i)=>m.classList.toggle('cur',i===cur)); medPics.forEach((p,i)=>p.classList.toggle('on',i===cur)); medCap.textContent=medItems[cur].dataset.cap; }
     const m=document.getElementById('steps').getBoundingClientRect();
     const q=clamp((innerHeight*0.75-m.top)/(m.height+innerHeight*0.25),0,1);
     method.style.setProperty('--q',RM?1:q.toFixed(3));
@@ -950,21 +1219,12 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     n.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')openNeed(n)});
   });
 
-  /* 03 · Galería */
-  const gbtn=[...document.querySelectorAll('.gallery button')], pImg=document.getElementById('panoImg'), pCap=document.getElementById('panoCap');
-  const pPics=[...pImg.querySelectorAll('img')];
-  gbtn.forEach(b=>b.addEventListener('click',()=>{
-    gbtn.forEach(x=>x.setAttribute('aria-pressed',x===b));
-    pCap.textContent=b.dataset.cap; pCap.classList.remove('fade-swap'); void pCap.offsetWidth; pCap.classList.add('fade-swap');
-    pPics.forEach(p=>p.classList.toggle('on',p.dataset.k===b.dataset.bg));
-  }));
-
   /* 04 · Método */
   const details=[
     {t:'Escuchar',l:'Antes de mirar la piel, te escuchamos.',i:['Qué te gustaría mejorar y desde cuándo te preocupa','Qué has probado antes y cómo te fue','Qué resultado te parecería natural']},
-    {t:'Valorar',ph:"<img src=\"assets/images/metodo/valorar-800.webp\" srcset=\"assets/images/metodo/valorar-480.webp 480w, assets/images/metodo/valorar-800.webp 800w, assets/images/metodo/valorar-1200.webp 1200w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Profesional de BELSA valorando el rostro de una paciente\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 40%\">",l:'Una valoración profesional, sin prisa.',i:['Análisis de la zona con buena luz','Revisión de antecedentes relevantes en consulta','Fotografías de seguimiento solo con tu permiso']},
-    {t:'Personalizar',ph:"<img src=\"assets/images/metodo/personalizar-800.webp\" srcset=\"assets/images/metodo/personalizar-480.webp 480w, assets/images/metodo/personalizar-800.webp 800w, assets/images/metodo/personalizar-1200.webp 1200w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Profesional de BELSA aplicando un tratamiento facial con aparatología\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 35%\">",l:'Un plan escrito que puedas llevarte.',i:['Tratamiento o combinación indicada','Número orientativo de sesiones y frecuencia','Presupuesto cerrado, sin compromiso']},
-    {t:'Acompañar',ph:"<img src=\"assets/images/metodo/acompanar-800.webp\" srcset=\"assets/images/metodo/acompanar-480.webp 480w, assets/images/metodo/acompanar-800.webp 800w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Dos personas cogidas de la mano en un gesto de acompañamiento\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 55%\">",l:'El plan se revisa en cada visita.',i:['Seguimiento de la evolución sesión a sesión','Ajustes si la piel lo pide','Consejos de cuidado en casa']}
+    {t:'Valorar',ph:"<img src=\"assets/images/metodo/valorar-800.webp\" srcset=\"assets/images/metodo/valorar-480.webp 480w, assets/images/metodo/valorar-800.webp 800w, assets/images/metodo/valorar-1200.webp 1200w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Profesional de BELSA valorando el rostro de una paciente\" loading=\"lazy\" decoding=\"async\">",l:'Una valoración profesional, sin prisa.',i:['Análisis de la zona con buena luz','Revisión de antecedentes relevantes en consulta','Fotografías de seguimiento solo con tu permiso']},
+    {t:'Personalizar',ph:"<img src=\"assets/images/metodo/personalizar-800.webp\" srcset=\"assets/images/metodo/personalizar-480.webp 480w, assets/images/metodo/personalizar-800.webp 800w, assets/images/metodo/personalizar-1200.webp 1200w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Profesional de BELSA aplicando un tratamiento facial con aparatología\" loading=\"lazy\" decoding=\"async\">",l:'Un plan escrito que puedas llevarte.',i:['Tratamiento o combinación indicada','Número orientativo de sesiones y frecuencia','Presupuesto cerrado, sin compromiso']},
+    {t:'Acompañar',ph:"<img src=\"assets/images/metodo/acompanar-800.webp\" srcset=\"assets/images/metodo/acompanar-480.webp 480w, assets/images/metodo/acompanar-800.webp 800w\" sizes=\"(max-width:860px) 320px, 22vw\" width=\"800\" height=\"1200\" alt=\"Dos personas cogidas de la mano en un gesto de acompañamiento\" loading=\"lazy\" decoding=\"async\">",l:'El plan se revisa en cada visita.',i:['Seguimiento de la evolución sesión a sesión','Ajustes si la piel lo pide','Consejos de cuidado en casa']}
   ];
   const sd=document.getElementById('stepDetail');
   function showStep(i){
@@ -975,12 +1235,6 @@ details p{padding:0 0 22px;font-size:14.5px;color:var(--muted);max-width:60ch}
     sd.classList.remove('fade-swap'); void sd.offsetWidth; sd.classList.add('fade-swap');
   }
   steps.forEach((s,i)=>s.addEventListener('click',()=>showStep(i))); showStep(0);
-
-  /* 08 · Carrusel manual */
-  const track=document.getElementById('track');
-  const step=()=>track.querySelector('.quote').getBoundingClientRect().width+20;
-  document.getElementById('prev').addEventListener('click',()=>track.scrollBy({left:-step(),behavior:RM?'auto':'smooth'}));
-  document.getElementById('next').addEventListener('click',()=>track.scrollBy({left:step(),behavior:RM?'auto':'smooth'}));
 
   /* 09 · Journal */
   const cats=[...document.querySelectorAll('.cat')], posts=[...document.querySelectorAll('.post')];

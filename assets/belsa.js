@@ -9,6 +9,32 @@
     var o = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o);
   });
 
+  // Titulares palabra a palabra
+  document.querySelectorAll('.h-sec').forEach(function(h){
+    var i = 0;
+    (function walk(n){ [].slice.call(n.childNodes).forEach(function(c){
+      if (c.nodeType === 3){
+        var glue = !!c.previousSibling && /^\S/.test(c.textContent), frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(function(w){
+          if (!w) return;
+          if (/^\s+$/.test(w)){ frag.appendChild(document.createTextNode(w)); return; }
+          var o = document.createElement('span'), s = document.createElement('span');
+          o.className = 'w'; s.style.setProperty('--i', i++); s.textContent = w; o.appendChild(s);
+          if (glue){ glue = false; var nb = document.createElement('span'), prev = c.previousSibling; nb.style.whiteSpace = 'nowrap'; prev.replaceWith(nb); nb.appendChild(prev); nb.appendChild(o); return; }
+          frag.appendChild(o);
+        });
+        c.replaceWith(frag);
+      } else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+    }); })(h);
+    h.classList.add('wsplit'); if (!h.classList.contains('rv')) h.classList.add('rv');
+  });
+  // Fotos: cortina al entrar y parallax dentro del marco
+  document.querySelectorAll('.tcard .vis, .page-ph, .tech-ph, .art-ph').forEach(function(el){
+    if (!el.querySelector('img')) return;
+    el.classList.add('imr', 'rv');
+    if (!el.classList.contains('art-ph')) el.querySelector('img').classList.add('par');
+  });
+
   // Revelados
   var io = new IntersectionObserver(function(es){
     es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -19,6 +45,7 @@
   });
 
   // Progreso, cabecera y WhatsApp flotante
+  var pars = [].slice.call(document.querySelectorAll('img.par')), heroTxt = document.querySelector('.hero-sub .wrap>div:first-child');
   var pbar = document.getElementById('pbar'), hdr = document.getElementById('hdr'), wa = document.getElementById('waFloat'), ticking = false;
   function frame(){
     ticking = false;
@@ -26,6 +53,18 @@
     if (pbar) pbar.style.transform = 'scaleX(' + (H > 0 ? y / H : 0) + ')';
     if (hdr) hdr.classList.toggle('scrolled', y > 30);
     if (wa) wa.classList.toggle('show', y > innerHeight * 0.4);
+    if (!RM){
+      pars.forEach(function(im){
+        var b = im.parentElement.getBoundingClientRect();
+        if (b.bottom < -100 || b.top > innerHeight + 100) return;
+        var c = (b.top + b.height / 2 - innerHeight / 2) / (innerHeight / 2 + b.height / 2);
+        im.style.setProperty('--py', (Math.max(-1, Math.min(1, c)) * -b.height * 0.065).toFixed(1) + 'px');
+      });
+      if (heroTxt && y < innerHeight * 1.2){
+        var k = Math.min(1, y / innerHeight);
+        heroTxt.style.transform = 'translateY(' + (-k * 36).toFixed(1) + 'px)'; heroTxt.style.opacity = (1 - k * 0.5).toFixed(3);
+      }
+    }
   }
   function req(){ if (!ticking){ ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, {passive:true}); addEventListener('resize', req); frame();
