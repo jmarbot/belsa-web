@@ -1,0 +1,10 @@
+# Fotografías originales (solo se publican las versiones optimizadas de assets/images/)
+imagenes-originales/
+
+# Inventario privado de fotografías
+INVENTARIO-FOTOGRAFIAS-BELSA.csv
+
+# Respaldos y capturas temporales
+_respaldos*/
+*.bundle
+capturas/
