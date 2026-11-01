@@ -8,3 +8,6 @@ INVENTARIO-FOTOGRAFIAS-BELSA.csv
 _respaldos*/
 *.bundle
 capturas/
+
+# Documentación interna (auditorías, informes): repositorio público, no se publica
+docs/
