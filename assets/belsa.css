@@ -54,7 +54,7 @@ p{margin:0}
 .logo{display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1;color:var(--ink)}
 .logo b{font-family:var(--serif);font-weight:500;font-size:27px;letter-spacing:.32em;margin-right:-.32em}
 .logo small{font-size:8px;letter-spacing:.78em;margin-right:-.78em;margin-top:5px;font-weight:500}
-.nav{display:flex;gap:clamp(14px,1.5vw,24px);align-items:center}
+.nav{display:flex;gap:clamp(14px,1.4vw,20px);align-items:center}
 .nav a{font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;position:relative;padding-block:6px;white-space:nowrap}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--champ);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
 .nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
@@ -295,7 +295,8 @@ ol.steps{margin:0;padding:0}
 .ylist b{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink);line-height:1.1}
 .ylist span{font-size:12px;color:var(--muted)}
 .ylist .ypr{flex:0 0 auto;font-family:var(--serif);font-size:24px;line-height:1.1;color:var(--champ-ink);white-space:nowrap}
-@media (max-width:760px){.ylist{grid-template-columns:1fr}}
+@media (max-width:760px){.ylist{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.ylist li{flex-direction:column;align-items:flex-start;gap:8px}}
 
 /* ───── Encuadre de fotografías: punto focal por imagen (vale para todas las páginas) ───── */
 img[src*="assets/images/"]{object-fit:cover}
